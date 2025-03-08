@@ -1,0 +1,131 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400");
+
+* {
+  box-sizing: border-box;
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+:root {
+  --d: 5500ms;
+  --angle: 0deg;
+  --c1: rgba(168, 239, 255, 1);
+  --c2: rgba(255, 105, 180, 1);
+}
+html {
+  background-color: #160505;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+.outer-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  position: relative;
+}
+
+@keyframes borderRadial {
+  0% {
+    --gradX: 100%;
+    --gradY: 50%;
+  }
+  25% {
+    --gradX: 100%;
+    --gradY: 100%;
+  }
+  50% {
+    --gradX: 50%;
+    --gradY: 100%;
+  }
+  75% {
+    --gradX: 0%;
+    --gradY: 50%;
+  }
+  100% {
+    --gradX: 50%;
+    --gradY: 0%;
+  }
+}
+
+.box {
+  width: 50%;
+  border: 5px solid transparent;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background: #160505;
+  position: relative;
+  z-index: 1;
+
+  border-image: conic-gradient(
+      from var(--angle),
+      var(--c1),
+      var(--c2) 25%,
+      var(--c1) 50%,
+      var(--c2) 75%,
+      var(--c1)
+    )
+    1;
+  animation: rotateBorder var(--d) linear infinite;
+}
+
+@keyframes rotateBorder {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
+.input-box {
+  padding: 10px;
+  width: 100%;
+}
+
+.input {
+  padding: 12px 20px;
+  margin: 8px 0;
+  width: 100%;
+  border: 1px solid white;
+  border-radius: 6px;
+  background: transparent;
+  color: white;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--c1);
+}
+
+.btn {
+  padding: 10px;
+  border-radius: 20px;
+  width: 90px;
+  font-weight: bold;
+  margin: 20px;
+  background: var(--c1);
+  color: black;
+  border: none;
+  cursor: pointer;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+.links a {
+  color: aliceblue;
+  text-decoration: none;
+}
